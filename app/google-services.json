@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "344880217666",
+    "project_id": "shareease-29e44",
+    "storage_bucket": "shareease-29e44.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:344880217666:android:793fc59dbba923ab37b7db",
+        "android_client_info": {
+          "package_name": "com.ogps.shareease"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "344880217666-1rgv6cojqp83kb8s95qpga3m6t07vakh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9OEkgi-0UZHzOTm6y6OPyEbDbhIjYLtc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "344880217666-1rgv6cojqp83kb8s95qpga3m6t07vakh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
