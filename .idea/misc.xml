@@ -3,8 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Aryan Dadheech/AndroidStudioProjects/ShareEase/app/src/main/res/layout/activity_home_page.xml" value="0.2563405797101449" />
+        <entry key="..\:/Users/Aryan Dadheech/AndroidStudioProjects/ShareEase/app/src/main/res/layout/activity_home_screen.xml" value="0.5" />
         <entry key="..\:/Users/Aryan Dadheech/AndroidStudioProjects/ShareEase/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Aryan Dadheech/AndroidStudioProjects/ShareEase/app/src/main/res/layout/activity_sign_up.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Aryan Dadheech/AndroidStudioProjects/ShareEase/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
+        <entry key="..\:/Users/Aryan Dadheech/AndroidStudioProjects/ShareEase/app/src/main/res/layout/fragment_dashboard.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Aryan Dadheech/AndroidStudioProjects/ShareEase/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Aryan Dadheech/AndroidStudioProjects/ShareEase/app/src/main/res/layout/fragment_notifications.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

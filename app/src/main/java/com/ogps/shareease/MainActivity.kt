@@ -7,6 +7,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -32,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(user, password).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
                 Toast.makeText(this, "Logged In", Toast.LENGTH_LONG).show()
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, HomePage::class.java)
                 startActivity(intent)
                 finish()
             } else {

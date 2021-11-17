@@ -6,4 +6,5 @@
     <string name="stars">***********</string>
     <string name="password">Password</string>
     <string name="not_a_member_sign_up">Not a member? Sign Up</string>
+    <string name="name">Name</string>
 </resources>
