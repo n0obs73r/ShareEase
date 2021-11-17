@@ -14,20 +14,20 @@ import com.google.firebase.ktx.Firebase
 import android.content.ContentValues.TAG
 
 
-class SignUpActivity : AppCompatActivity() {
+open class SignUpActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     val db = Firebase.firestore
+
+    val userId = findViewById<EditText>(R.id.signup_email).text.toString()
+    val name = findViewById<EditText>(R.id.name).text.toString()
+    val number = findViewById<EditText>(R.id.number).text.toString()
+    val address = findViewById<EditText>(R.id.address).text.toString()
+    val dob = findViewById<EditText>(R.id.dob).text.toString()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
         auth = FirebaseAuth.getInstance();
-
-//        if (auth.getCurrentUser() != null) {
-//            val intent = Intent(this, MainActivity::class.java);
-//            startActivity(intent);
-//            finish();
-//        }
 
         val signUpButton : Button = findViewById(R.id.signup)
         signUpButton.setOnClickListener {
@@ -41,23 +41,21 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun signUp() {
-        val user = findViewById<EditText>(R.id.signup_email).text.toString()
-        val name = findViewById<EditText>(R.id.name).text.toString()
-        val number = findViewById<EditText>(R.id.number).text.toString()
-        val address = findViewById<EditText>(R.id.address).text.toString()
-        val dob = findViewById<EditText>(R.id.dob).text.toString()
+
         val profile = hashMapOf(
             "name" to name,
             "number" to number,
-            "email" to user,
+            "email" to userId,
             "address" to address,
             "dob" to dob
         )
         db.collection("users")
-            .add(profile)
+            .document(userId)
+            .set(profile)
             .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+                Log.d(TAG, "DocumentSnapshot added ")
             }
+                //with ID: ${documentReference.id}
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error adding document", e)
             }
@@ -65,7 +63,7 @@ class SignUpActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        auth.createUserWithEmailAndPassword(user, password).addOnCompleteListener(this, OnCompleteListener{ task ->
+        auth.createUserWithEmailAndPassword(userId, password).addOnCompleteListener(this, OnCompleteListener{ task ->
             if(task.isSuccessful) {
                 Toast.makeText(this, "Successfully Registered", Toast.LENGTH_LONG).show()
                 val intent = Intent(this, MainActivity::class.java)
