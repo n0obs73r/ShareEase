@@ -7,36 +7,37 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         val button : Button = findViewById(R.id.loginbutton)
         button.setOnClickListener {
             login()
         }
-        val SignUpButton : Button = findViewById(R.id.signupbutton)
-        SignUpButton.setOnClickListener {
-            val intent2 = Intent(this, SignUpActivity::class.java)
-            startActivity(intent2)
-        }
 
+        val signUpButton : Button = findViewById(R.id.signupbutton)
+        signUpButton.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
+        }
     }
     private fun login(){
-        var user = findViewById<EditText>(R.id.email).text.toString()
-        var password = findViewById<EditText>(R.id.password).text.toString()
+        val user = findViewById<EditText>(R.id.email).text.toString()
+        val password = findViewById<EditText>(R.id.password).text.toString()
 
         auth = FirebaseAuth.getInstance()
         auth.signInWithEmailAndPassword(user, password).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
                 Toast.makeText(this, "Logged In", Toast.LENGTH_LONG).show()
                 val intent = Intent(this, HomePage::class.java)
+                intent.putExtra("USER_ID", user)
                 startActivity(intent)
-                finish()
             } else {
                 Toast.makeText(
                     this,
