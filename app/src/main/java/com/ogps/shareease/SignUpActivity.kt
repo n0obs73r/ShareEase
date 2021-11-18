@@ -7,7 +7,6 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -21,6 +20,8 @@ open class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
+
 
         val signUpButton : Button = findViewById(R.id.signup)
         signUpButton.setOnClickListener {
@@ -38,7 +39,7 @@ open class SignUpActivity : AppCompatActivity() {
         val userId = profile["email"]
 
         if (userId != null) {
-            db.collection("users").document(userId).set(profile).addOnSuccessListener { documentReference ->
+            db.collection("users").document(userId).set(profile).addOnSuccessListener {
                 Log.d(TAG, "DocumentSnapshot added")
             }.addOnFailureListener { e ->
                 Log.w(TAG, "Error adding document", e)
