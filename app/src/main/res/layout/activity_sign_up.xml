@@ -90,7 +90,27 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/displaypfp"
+            />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tap to Select Profile Picture"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"
+        android:layout_margin="7dp"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/pfp"/>
+
+    </LinearLayout>
 
 
     <Button
