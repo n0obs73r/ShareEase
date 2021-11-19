@@ -9,4 +9,7 @@
     <string name="name">Name</string>
     <string name="search">Search</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="appname">appname</string>
+    <string name="appicon">AppIcon</string>
+    <string name="share_in_for_a_better_tomorrow">Share-in for a better Tomorrow</string>
 </resources>

@@ -41,10 +41,10 @@ open class SignUpActivity : AppCompatActivity() {
             updateProfilePicture()
         }
 
-        val loginButton : Button = findViewById(R.id.login_page_btn)
-        loginButton.setOnClickListener {
-            finish()
-        }
+//        val loginButton : Button = findViewById(R.id.login_page_btn)
+//        loginButton.setOnClickListener {
+//            finish()
+//        }
     }
 
     private fun updateProfilePicture() {
