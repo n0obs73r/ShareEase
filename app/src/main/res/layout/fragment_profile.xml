@@ -28,6 +28,12 @@
         android:textSize="11sp" />
 
     </LinearLayout>
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:id="@+id/profilepicture"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"

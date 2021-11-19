@@ -1,7 +1,6 @@
 package com.ogps.shareease.fragments
 
 import android.content.ContentValues.TAG
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -11,21 +10,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.ogps.shareease.HomePage
 import com.ogps.shareease.MainActivity
 import com.ogps.shareease.R
-import com.ogps.shareease.SignUpActivity
+import android.graphics.BitmapFactory
+import android.widget.ImageView
+import com.google.firebase.storage.FirebaseStorage
 
 private const val USER_ID = "UserID"
 
 class Profile : Fragment()  {
 
     private val db = Firebase.firestore
-
+    private val storage = FirebaseStorage.getInstance()
+    private val storageReference = storage.reference
     private var profile: HashMap<String, String> = HashMap()
     private var userID: String? = null
 
@@ -79,6 +79,17 @@ class Profile : Fragment()  {
     }
 
     private fun setupProfile() {
+        val storageRef = storageReference.child("users/$userID/profile.jpg")
+        val imageView = rootView.findViewById<ImageView>(R.id.profilepicture)
+        val onemb = (1024 * 1024).toLong()
+        storageRef.getBytes(onemb)
+            .addOnSuccessListener { bytes ->
+                val bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                imageView.setImageBitmap(bmp)
+            }.addOnFailureListener {
+                //Toast.makeText(this, "No Such file or Path found!!", Toast.LENGTH_LONG).show()
+            }
+
         rootView.findViewById<TextView>(R.id.name).text = profile["name"]
         rootView.findViewById<TextView>(R.id.dob).text = profile["dob"]
         rootView.findViewById<TextView>(R.id.address).text = profile["address"]
