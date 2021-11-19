@@ -59,6 +59,30 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="phone" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Car Name" />
+
+    <EditText
+        android:id="@+id/carname"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Car Number" />
+
+    <EditText
+        android:id="@+id/carnumber"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text" />
 
     <TextView
         android:id="@+id/email"

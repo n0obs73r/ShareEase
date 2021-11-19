@@ -125,13 +125,17 @@ open class SignUpActivity : AppCompatActivity() {
         val number = findViewById<EditText>(R.id.number).text.toString()
         val address = findViewById<EditText>(R.id.address).text.toString()
         val dob = findViewById<EditText>(R.id.dob).text.toString()
+        val carName = findViewById<EditText>(R.id.carname).text.toString()
+        val carNumber = findViewById<EditText>(R.id.carnumber).text.toString()
 
         return hashMapOf(
             "name" to name,
             "number" to number,
             "email" to userId,
             "address" to address,
-            "dob" to dob
+            "dob" to dob,
+            "carName" to carName,
+            "carNumber" to carNumber
         )
     }
 }

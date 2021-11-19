@@ -68,6 +68,8 @@ class Profile : Fragment()  {
                     profile["email"] = document["email"] as String
                     profile["address"] = document["address"] as String
                     profile["dob"] = document["dob"] as String
+                    profile["carName"] = document["carName"] as String
+                    profile["carNumber"] = document["carNumber"] as String
                     setupProfile()
                 } else {
                     Log.d(TAG, "No such document")
@@ -95,6 +97,8 @@ class Profile : Fragment()  {
         rootView.findViewById<TextView>(R.id.address).text = profile["address"]
         rootView.findViewById<TextView>(R.id.number).text = profile["number"]
         rootView.findViewById<TextView>(R.id.email).text = profile["email"]
+        rootView.findViewById<TextView>(R.id.carname).text = profile["carName"]
+        rootView.findViewById<TextView>(R.id.carnumber).text = profile["carNumber"]
     }
 
     companion object {
