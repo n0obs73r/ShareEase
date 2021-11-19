@@ -14,6 +14,7 @@ import android.widget.*
 import android.graphics.BitmapFactory
 import com.google.firebase.storage.FirebaseStorage
 import java.io.FileNotFoundException
+import kotlin.collections.HashMap
 
 
 open class SignUpActivity : AppCompatActivity() {
@@ -22,7 +23,8 @@ open class SignUpActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var filePath: Uri
     private val db = Firebase.firestore
-    private val storageReference = FirebaseStorage.getInstance().getReference()
+    private val storage = FirebaseStorage.getInstance()
+    private val storageReference = storage.reference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +38,7 @@ open class SignUpActivity : AppCompatActivity() {
             uploadImageToFirebase(filePath)
         }
         pfpButton.setOnClickListener {
-            updatepfp()
+            updateProfilePicture()
         }
 
         val loginButton : Button = findViewById(R.id.login_page_btn)
@@ -45,10 +47,10 @@ open class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    private fun updatepfp() {
+    private fun updateProfilePicture() {
 
-        val Galleryintent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(Galleryintent,1000)
+        val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(galleryIntent,1000)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -73,11 +75,13 @@ open class SignUpActivity : AppCompatActivity() {
     }
 
     private fun uploadImageToFirebase(imageUri: Uri) {
-        val storageRef = storageReference
-        storageRef.child("users/${auth.currentUser!!.uid}/profile_picture.jpg")
+        val profile = getDetails()
+        val userId = profile["email"]
+        val storageRef = storageReference.child("users/$userId/profile.jpg")
+        //storageRef.child("users/${auth.currentUser!!.uid}/profile_picture.jpg")
         storageRef.putFile(imageUri).addOnSuccessListener {
             Toast.makeText(this, "Image Uploaded!", Toast.LENGTH_SHORT).show()
-        }.addOnFailureListener(){
+        }.addOnFailureListener{
             Toast.makeText(this, "Image Not Uploaded!", Toast.LENGTH_SHORT).show()
         }
     }
