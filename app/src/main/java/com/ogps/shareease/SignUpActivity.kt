@@ -1,7 +1,5 @@
 package com.ogps.shareease
 
-import android.R.attr
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,11 +12,7 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.widget.*
 import android.graphics.BitmapFactory
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
-import com.google.firebase.storage.UploadTask
-import java.io.File
 import java.io.FileNotFoundException
 
 
@@ -26,6 +20,7 @@ open class SignUpActivity : AppCompatActivity() {
 
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var filePath: Uri
     private val db = Firebase.firestore
     private val storageReference = FirebaseStorage.getInstance().getReference()
 
@@ -38,6 +33,7 @@ open class SignUpActivity : AppCompatActivity() {
         val signUpButton : Button = findViewById(R.id.signup)
         signUpButton.setOnClickListener {
             signUp()
+            uploadImageToFirebase(filePath)
         }
         pfpButton.setOnClickListener {
             updatepfp()
@@ -59,15 +55,15 @@ open class SignUpActivity : AppCompatActivity() {
         val pfpView : ImageView = findViewById(R.id.displaypfp)
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == 1000){
-            if (resultCode === RESULT_OK && data!= null) {
+            if (resultCode == RESULT_OK && data!= null) {
                 // Get the Uri of data
-                val filePath = data.data
+                filePath = data.data!!
                 try {
-                    val inputStream = contentResolver.openInputStream(filePath!!)
+                    val inputStream = contentResolver.openInputStream(filePath)
                     val bitmap = BitmapFactory.decodeStream(inputStream)
-                    pfpView!!.setImageBitmap(bitmap)
+                    pfpView.setImageBitmap(bitmap)
                     //imageStore(bitmap)
-                    uploadImageToFirebase(filePath)
+                    //uploadImageToFirebase(filePath)
                 } catch (e: FileNotFoundException) {
                     e.printStackTrace()
                 }
@@ -79,9 +75,9 @@ open class SignUpActivity : AppCompatActivity() {
     private fun uploadImageToFirebase(imageUri: Uri) {
         val storageRef = storageReference
         storageRef.child("users/${auth.currentUser!!.uid}/profile_picture.jpg")
-        storageRef.putFile(imageUri).addOnSuccessListener(OnSuccessListener<UploadTask.TaskSnapshot>(){
+        storageRef.putFile(imageUri).addOnSuccessListener {
             Toast.makeText(this, "Image Uploaded!", Toast.LENGTH_SHORT).show()
-        }).addOnFailureListener(){
+        }.addOnFailureListener(){
             Toast.makeText(this, "Image Not Uploaded!", Toast.LENGTH_SHORT).show()
         }
     }
