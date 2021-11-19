@@ -12,4 +12,6 @@
     <string name="appname">appname</string>
     <string name="appicon">AppIcon</string>
     <string name="share_in_for_a_better_tomorrow">Share-in for a better Tomorrow</string>
+    <string name="publish">Publish</string>
+    <string name="profile">Profile</string>
 </resources>
